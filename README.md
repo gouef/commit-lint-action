@@ -41,8 +41,10 @@ on:
 
 jobs:
   lint-commits:
-    uses: gouef/commit-lint-action@main
-
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commit lint
+        uses: gouef/commit-lint-action@main
 ```
 
 

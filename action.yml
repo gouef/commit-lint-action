@@ -1,5 +1,5 @@
-name: Create Release Note with PRs, Issues, Users
-description: Create Release notes with PRs, Issues, Users
+name: Commit Lint
+description: Commit Lint with [TYPE] prefix and length of message
 branding:
   icon: check
   color: green

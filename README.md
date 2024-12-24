@@ -1,47 +1,54 @@
 <img align=right width="168" src="docs/gouef_logo.png">
 
-# github-lib-template
-Github template for new libraries
+# Commit lint action
+Github commit lint action
 
-[![GoDoc](https://pkg.go.dev/badge/github.com/gouef/github-lib-template.svg)](https://pkg.go.dev/github.com/gouef/github-lib-template)
-[![GitHub stars](https://img.shields.io/github/stars/gouef/github-lib-template?style=social)](https://github.com/gouef/github-lib-template/stargazers)
-[![Go Report Card](https://goreportcard.com/badge/github.com/gouef/github-lib-template)](https://goreportcard.com/report/github.com/gouef/github-lib-template)
-[![codecov](https://codecov.io/github/gouef/github-lib-template/branch/main/graph/badge.svg?token=YUG8EMH6Q8)](https://codecov.io/github/gouef/github-lib-template)
+[![GitHub stars](https://img.shields.io/github/stars/gouef/commit-lint-action?style=social)](https://github.com/gouef/commit-lint-action/stargazers)
+[![Go Report Card](https://goreportcard.com/badge/github.com/gouef/commit-lint-action)](https://goreportcard.com/report/github.com/gouef/commit-lint-action)
 
 ## Versions
-![Stable Version](https://img.shields.io/github/v/release/gouef/github-lib-template?label=Stable&labelColor=green)
-![GitHub Release](https://img.shields.io/github/v/release/gouef/github-lib-template?label=RC&include_prereleases&filter=*rc*&logoSize=diago)
-![GitHub Release](https://img.shields.io/github/v/release/gouef/github-lib-template?label=Beta&include_prereleases&filter=*beta*&logoSize=diago)
+![Stable Version](https://img.shields.io/github/v/release/gouef/commit-lint-action?label=Stable&labelColor=green)
+![GitHub Release](https://img.shields.io/github/v/release/gouef/commit-lint-action?label=RC&include_prereleases&filter=*rc*&logoSize=diago)
+![GitHub Release](https://img.shields.io/github/v/release/gouef/commit-lint-action?label=Beta&include_prereleases&filter=*beta*&logoSize=diago)
 
 ## Introduction
 
 This is template repository for new libraries
 
-## Important
+## Example
 
-Edit go.mod and rename to your package module
+```yaml
+name: Commit Lint
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        required: false
+        type: string
+        default: "main"
+  pull_request:
+    types: [opened, synchronize, edited]
+  push:
+    branches:
+      - master
+      - main
+      - develop
+      - feature/**
+      - release/**
+      - test/**
+      - bugfix/**
+
+jobs:
+  lint-commits:
+    uses: gouef/commit-lint-action@main
+
+```
+
 
 ## Commit rules
 Commit message should looks like
 ```
 [TYPE] some message
 ```
-
-### Types
- - Add
- - Fix
- - Update
- - Remove
- - Refactor
- - Docs
- - Test
- - Improve
-
-## Contributors
-
-<div style="display: flex; flex-wrap: wrap; align-items: center; margin-bottom: 10px;">
-<span style="width:100px;">
-  <a href="https://github.com/JanGalek"><img src="https://raw.githubusercontent.com/gouef/commit-lint-action/refs/heads/contributors-svg/.github/contributors/JanGalek.svg" alt="JanGalek" /></a>
-</span>
-</div>
 

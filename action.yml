@@ -1,4 +1,4 @@
-name: Commit Lint
+name: Commit Lint with [TYPE] prefix and length of message
 description: Commit Lint with [TYPE] prefix and length of message
 branding:
   icon: check

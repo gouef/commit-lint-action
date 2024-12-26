@@ -4,7 +4,7 @@
 Github commit lint action
 
 [![GitHub stars](https://img.shields.io/github/stars/gouef/commit-lint-action?style=social)](https://github.com/gouef/commit-lint-action/stargazers)
-[![Go Report Card](https://goreportcard.com/badge/github.com/gouef/commit-lint-action)](https://goreportcard.com/report/github.com/gouef/commit-lint-action)
+![Usages](https://img.shields.io/endpoint?url=https://github-repo-usages.vercel.app/api/getAction.go?repository=gouef/commit-lint-action)
 
 ## Versions
 ![Stable Version](https://img.shields.io/github/v/release/gouef/commit-lint-action?label=Stable&labelColor=green)

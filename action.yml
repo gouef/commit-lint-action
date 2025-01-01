@@ -33,7 +33,7 @@ runs:
         PREFIXES=$(echo "${{ inputs.prefixes }}" | tr ',' '|')
         PREFIXES_LIST=$(echo "${{ inputs.prefixes }}" | tr '|' ', ')
         
-        REGEX="^\(fixup! )[($PREFIXES)\] .{${{ inputs.minLengthText }},}$|^Merge .* into .*$"
+        REGEX="^\(fixup! )?[($PREFIXES)\] .{${{ inputs.minLengthText }},}$|^Merge .* into .*$"
         
         echo "$COMMITS" | while read -r COMMIT; do
           if [[ ! $COMMIT =~ $REGEX ]]; then

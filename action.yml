@@ -15,7 +15,7 @@ inputs:
     description: "List of all allowed prefix [TYPE] where type can be Add, Fix, use Add|Fix|Update ..."
   minLengthText:
     required: true
-    default: 10
+    default: 8
     description: "Minimal length after [TYPE] for commit message"
 
 runs:

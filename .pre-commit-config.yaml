@@ -1,0 +1,14 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check-commit-msg
+        name: Local Commit Message Lint
+        description: Lints commit message for [TYPE] prefix and length.
+        entry: .github/scripts/commit-lint.sh
+        language: script
+        stages: [commit-msg]
+        always_run: true
+        args: [
+          "-prefixes", "Add|Fix|Update|Remove|Refactor|Docs|Test|Improve|Merge|Bump",
+          "-minLength", "8"
+        ]

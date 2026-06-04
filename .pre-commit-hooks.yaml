@@ -1,0 +1,7 @@
+- id: check-commit-msg
+  name: Check Commit Message Format
+  description: Lints commit message for [TYPE] prefix and length.
+  entry: ./.github/scripts/commit-lint.sh
+  language: script
+  stages: [commit-msg]
+  always_run: true

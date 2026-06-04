@@ -29,20 +29,22 @@ runs:
     - name: Lint commit messages
       run: |
         COMMITS=$(git log --pretty=format:"%s" HEAD^..HEAD 2>/dev/null || git log --pretty=format:"%s" HEAD)
-        
-        PREFIXES=$(echo "${{ inputs.prefixes }}" | tr ',' '|')
-        PREFIXES_LIST=$(echo "${{ inputs.prefixes }}" | tr '|' ', ')
-        
-        REGEX="^(fixup! )?\[($PREFIXES)\] .{${{ inputs.minLengthText }},}$|^Merge .* into .*$|^Initial commit$|^Bump .*$"
+        chmod +x .github/scripts/commit-lint.sh
+
+        TEMP_MSG_FILE=$(mktemp)
         
         echo "$COMMITS" | while read -r COMMIT; do
-          if [[ ! $COMMIT =~ $REGEX ]]; then
-            echo "Invalid commit message: $COMMIT"
-            echo "Commit messages must match: '[TYPE] Description' (e.g., '[Add] New feature')."
-            echo "[TYPE] allowed is $PREFIXES_LIST"
+          if [ -z "$COMMIT" ]; then continue; fi
+          
+          echo "$COMMIT" > "$TEMP_MSG_FILE"
+          
+          if ! .github/scripts/commit-lint.sh -prefixes "${{ inputs.prefixes }}" -minLength "${{ inputs.minLengthText }}" "$TEMP_MSG_FILE"; then
+            rm -f "$TEMP_MSG_FILE"
             exit 1
           fi
         done
+        
+        rm -f "$TEMP_MSG_FILE"
 
       shell: bash
     - name: Commit messages are valid

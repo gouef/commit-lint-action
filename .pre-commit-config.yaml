@@ -9,6 +9,6 @@ repos:
         stages: [commit-msg]
         always_run: true
         args: [
-          "-prefixes", "Add|Fix|Update|Remove|Refactor|Docs|Test|Improve|Merge|Bump",
-          "-minLength", "8"
+          "-p", "Add|Fix|Update|Remove|Refactor|Docs|Test|Improve|Merge|Bump",
+          "-l", "8"
         ]

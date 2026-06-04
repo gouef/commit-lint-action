@@ -38,7 +38,7 @@ runs:
           
           echo "$COMMIT" > "$TEMP_MSG_FILE"
           
-          if ! .github/scripts/commit-lint.sh -prefixes "${{ inputs.prefixes }}" -minLength "${{ inputs.minLengthText }}" "$TEMP_MSG_FILE"; then
+          if ! .github/scripts/commit-lint.sh -p "${{ inputs.prefixes }}" -l "${{ inputs.minLengthText }}" "$TEMP_MSG_FILE"; then
             rm -f "$TEMP_MSG_FILE"
             exit 1
           fi

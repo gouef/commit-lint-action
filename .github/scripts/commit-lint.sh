@@ -6,10 +6,10 @@ PREFIXES="Add|Fix|Update|Remove|Refactor|Docs|Test|Improve|Merge|Bump"
 MIN_LENGTH=8
 
 # Parsování argumentů pomocí getopts
-while getopts "prefixes:minLength:" opt; do
+while getopts "p:l:" opt; do
   case $opt in
-    prefixes) PREFIXES="$OPTARG" ;;
-    minLength) MIN_LENGTH="$OPTARG" ;;
+    p) PREFIXES="$OPTARG" ;;
+    l) MIN_LENGTH="$OPTARG" ;;
     *) echo "Unknown option"; exit 1 ;;
   esac
 done

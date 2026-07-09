@@ -15,7 +15,7 @@ inputs:
     description: "List of all allowed prefix [TYPE] where type can be Add, Fix, use Add|Fix|Update ..."
   minLengthText:
     required: true
-    default: 8
+    default: "8"
     description: "Minimal length after [TYPE] for commit message"
 
 runs:
@@ -28,8 +28,9 @@ runs:
 
     - name: Lint commit messages
       run: |
+        SCRIPT_PATH="$GITHUB_ACTION_PATH/.github/scripts/commit-lint.sh"
         COMMITS=$(git log --pretty=format:"%s" HEAD^..HEAD 2>/dev/null || git log --pretty=format:"%s" HEAD)
-        chmod +x .github/scripts/commit-lint.sh
+        chmod +x "$SCRIPT_PATH"
 
         TEMP_MSG_FILE=$(mktemp)
         
@@ -38,7 +39,7 @@ runs:
           
           echo "$COMMIT" > "$TEMP_MSG_FILE"
           
-          if ! .github/scripts/commit-lint.sh -p "${{ inputs.prefixes }}" -l "${{ inputs.minLengthText }}" "$TEMP_MSG_FILE"; then
+          if ! "$SCRIPT_PATH" -p "${{ inputs.prefixes }}" -l "${{ inputs.minLengthText }}" "$TEMP_MSG_FILE"; then
             rm -f "$TEMP_MSG_FILE"
             exit 1
           fi
